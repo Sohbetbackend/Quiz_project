@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% include 'index.html' %}
+
+<div class="container">
+    <table class="table tbale-sm">
+        <thead>
+            <th>Video</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                <video width="320" height="320" controls>
+                    <source src="{{ url_for('static', filename='videos/video.mp4') }}" type="video/mp4">
+                    <source src="{{ url_for('static', filename='videos/video.ogg') }}" type="video/ogg">
+                  Your browser does not support the video tag.
+                  </video>
+            </td>
+
+          </tr>
+
+          
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

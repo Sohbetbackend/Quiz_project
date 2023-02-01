@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% include 'index.html' %}
+
+<div class="container">
+    <table class="table tbale-sm">
+        <thead>
+            <th>Sr</th>
+            <th>Ady</th>
+            <th>Suraty</th>
+            <th>Dogrula</th>
+            <th>Pozmak</th>
+        </thead>
+        <tbody>
+          {% for news in news %}
+          <tr>
+            <td>{{ news.id }}</td>
+            <td>{{ news.name }}</td>
+            <td><img src="{{url_for('static',filename='images/' + news.img)}}" alt="{{news.name}}" width="80" height="60" style="object-fit: contain;"></td>
+            <td><a href="{{url_for('updatenews', id=news.id)}}" class="btn btn-sm btn-info">Dogrula</a></td>
+            <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal-{{news.id}}">
+              Pozmak
+            </button></td>
+          </tr>
+
+
+<!--============= MODEL ===================-->
+      <div class="modal fade" id="exampleModal-{{news.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{news.name }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="text-danger">Siz ({{ news.name }}) pozmak isleyarsinizmi? </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Yok</button>
+              <form action="{{url_for('deletenews',id=news.id)}}" method="post">
+                <button type="submit" class="btn btn-danger">Hovva</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+<!--==============MODEL ===================-->
+
+          {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

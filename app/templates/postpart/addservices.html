@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+{% include 'index.html' %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="text-center p-2 h4">Add a service</div>
+                {{ form.hidden_tag() }}
+                <form method="post" enctype="multipart/form-data">
+                <div>
+                    {{ form.name(class="form-control", placeholder='Name') }}
+                </div>
+                <br>
+                    <div class="row">
+                        {{ form.desc(cols=32, rows=4, placeholder='Description') }}
+                    </div>
+                <br>    
+                <p><input type="submit" value="{% if getnews %}Update {% else %}Add{% endif %} banner" class="btn btn-outline-info">
+                </form>
+            </div>
+      <div class="col-md-1"></div>
+    </div>
+</div>
+{% endblock content %}
